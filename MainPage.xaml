@@ -1,0 +1,72 @@
+﻿<Page x:Name="OwanderMainPage"
+    x:Class="Owander.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Owander"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <SplitView Name="SplitViewMenu" DisplayMode="CompactInline" CompactPaneLength="50" OpenPaneLength="200">
+            <SplitView.PaneBackground>
+                <AcrylicBrush TintColor="#CC9E9E9E" TintOpacity="0.6" Opacity="0.395" FallbackColor="#CC9E9E9E" BackgroundSource="HostBackdrop"/>
+            </SplitView.PaneBackground>
+            <SplitView.Pane>
+                <StackPanel>
+                    <StackPanel x:Name="MenuPanel" Orientation="Horizontal">
+                        <Button x:Name="MenuButton" Width="40" Height="40" Background="Transparent" BorderThickness="0,0,0,0" ToolTipService.ToolTip="Menu" TabIndex="0" Margin="5,5,5,5" CornerRadius="20,20,20,20">
+                            <SymbolIcon Symbol="GlobalNavigationButton"/>
+                        </Button>
+                        <TextBlock x:Name="MenuBlock" Text="Owander" FontSize="20" VerticalAlignment="Center" FontWeight="Normal"/>
+                    </StackPanel>
+                    <StackPanel x:Name="SettingsPanel" Orientation="Horizontal">
+                        <Button x:Name="SettingsButton" Width="40" Height="40" Background="Transparent" BorderThickness="0,0,0,0" ToolTipService.ToolTip="Settings" TabIndex="1" Margin="5,5,5,5" CornerRadius="20,20,20,20">
+                            <SymbolIcon Symbol="Setting"/>
+                        </Button>
+                        <TextBlock x:Name="SettingsBlock" Text="Settings" FontSize="16" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel x:Name="IndexedDBPanel" Orientation="Horizontal">
+                        <ToggleSwitch x:Name="IndexedDBSwitch" Header="IndexedDB" Width="138" Margin="50,0,20,0" OffContent="Off" OnContent="On" Visibility="Visible" TabIndex="2" ToolTipService.ToolTip="Toggle IndexedDB" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel x:Name="JavaScriptPanel" Orientation="Horizontal">
+                        <ToggleSwitch x:Name="JavaScriptSwitch" Header="JavaScript" Width="138" Margin="50,0,20,0" OffContent="Off" OnContent="On" Visibility="Visible" TabIndex="3" ToolTipService.ToolTip="Toggle JavaScript" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel x:Name="SpellCheckPanel" Orientation="Horizontal">
+                        <ToggleSwitch x:Name="SpellCheckSwitch" Header="Spell-check" Width="138" Margin="50,0,20,0" OffContent="Off" OnContent="On" Visibility="Visible" TabIndex="4" ToolTipService.ToolTip="Toggle the search box's spell-check" IsEnabled="False" />
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid x:Name="OwanderBackgroundGrid">
+                    <CommandBar x:Name="OwanderBar" DefaultLabelPosition="Right" CornerRadius="20,20,20,20" VerticalAlignment="Bottom">
+                        <AppBarButton x:Name="BackButton" Icon="Back" Label="Back" ToolTipService.ToolTip="Go backward" TabIndex="5" IsEnabled="False"/>
+                        <AppBarButton x:Name="ForwardButton" Icon="Forward" Label="Forward" ToolTipService.ToolTip="Go forward" TabIndex="6" IsEnabled="False"/>
+                        <AppBarButton x:Name="RefreshButton" Icon="Refresh" Label="Refresh" ToolTipService.ToolTip="Refresh this page" TabIndex="7" IsEnabled="False"/>
+                        <AppBarButton x:Name="StopButton" Icon="Cancel" Label="Stop" ToolTipService.ToolTip="Stop refreshing" TabIndex="8" Visibility="Collapsed"/>
+                        <AppBarButton x:Name="HomeButton" Icon="Home" Label="Home" ToolTipService.ToolTip="Go to home (Owander)" TabIndex="9" IsEnabled="False"/>
+                        <AppBarSeparator/>
+                        <AppBarButton x:Name="ShareContentButton" Label="Share content" ToolTipService.ToolTip="Share content from the browser" TabIndex="10" IsEnabled="False">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="&#xE924;"/>
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="ShareLinkButton" Icon="Link" Label="Share link" ToolTipService.ToolTip="Share web link" TabIndex="11" IsEnabled="False"/>
+                        <AppBarButton x:Name="EmojiButton" Icon="Emoji" Label="Emoji" ToolTipService.ToolTip="Open the emoji panel" TabIndex="12" IsEnabled="False"/>
+                        <AppBarButton x:Name="HandwritingButton" Label="Handwriting" ToolTipService.ToolTip="Open the handwriting view" TabIndex="13" IsEnabled="False">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="&#xE929;"/>
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton x:Name="KeyboardButton" Icon="Keyboard" Label="Keyboard" ToolTipService.ToolTip="Open the touch keyboard" TabIndex="14" IsEnabled="False"/>
+                    </CommandBar>
+                    <WebView x:Name="Navi" Source="ms-appx-web:///file/welcome.html" Margin="0,100,0,40"/>
+                    <TextBlock x:Name="WebsiteTitleBlock" Margin="20,16,20,0" TextWrapping="NoWrap" Text="Website Title" VerticalAlignment="Top" Height="21" FontSize="14" FontWeight="Normal" ToolTipService.ToolTip="{Binding Text, ElementName=WebsiteTitleBlock}" TextTrimming="CharacterEllipsis"/>
+                    <TextBox x:Name="SearchBox" TextWrapping="NoWrap" BorderThickness="0,0,0,0" PlaceholderText="Search using a URL" CornerRadius="20,20,20,20" Padding="20,8,20,8" Background="#66B5B5B5" Margin="20,45,65,0" Height="40" VerticalAlignment="Top" TabIndex="16" IsSpellCheckEnabled="True" IsEnabled="False"/>
+                    <AppBarButton x:Name="SearchBingButton" Icon="Find" Margin="0,45,20,0" HorizontalAlignment="Right" Width="40" Height="40" CornerRadius="20,20,20,20" TabIndex="15" ToolTipService.ToolTip="Search Bing" IsEnabled="False"/>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>
